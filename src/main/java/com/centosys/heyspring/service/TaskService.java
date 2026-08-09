@@ -1,5 +1,6 @@
 package com.centosys.heyspring.service;
 
+import com.centosys.heyspring.exception.TaskNotFoundException;
 import com.centosys.heyspring.model.Task;
 import com.centosys.heyspring.model.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class TaskService {
 
     public Task updateTask(Long id, Task updatedTask) {
         Task existingTask = taskRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Task with id " + id + " not found"));
+                () -> new TaskNotFoundException("Task with id " + id + " not found"));
 
         existingTask.setTitle(updatedTask.getTitle());
         existingTask.setDescription(updatedTask.getDescription());
@@ -46,7 +47,7 @@ public class TaskService {
 
     public Task toggleComplete(Long id) {
         Task task = taskRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Task with id " + id + " not found"));
+                () -> new TaskNotFoundException("Task with id " + id + " not found"));
         task.setCompleted(!task.isCompleted());
         return taskRepository.save(task);
     }
