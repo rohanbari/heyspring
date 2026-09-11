@@ -1,6 +1,6 @@
 # heyspring
 
-A simple Spring Boot REST API for managing tasks.
+A simple Spring Boot REST API for managing tasks. It's time to kickstart Spring!
 
 ## Tech stack
 
